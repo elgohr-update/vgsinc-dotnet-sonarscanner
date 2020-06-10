@@ -15,7 +15,7 @@ jobs:
           id: out_step
           run: echo "::set-output name=new_tag::$(echo "${{ github.ref }}" | sed -e "s/refs\/heads\///g" | sed -e "s/refs\/tags\///g" | sed -e "s/\//\-/g" | sed 's#+#_#g')"
 
-        - name: Publish API to Registry
+        - name: Publish Base Image to Registry
           uses: elgohr/Publish-Docker-Github-Action@master
           with:
             name: quay.io/vgsi/dotnet-sonarscanner:${{ steps.out_step.outputs.new_tag }}

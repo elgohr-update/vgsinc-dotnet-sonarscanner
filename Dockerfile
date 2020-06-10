@@ -1,4 +1,4 @@
-FROM quay.io/vgsi/dotnet-sonarscanner:master
+FROM quay.io/vgsi/dotnet-sonarscanner:base-image-test
 
 LABEL "com.github.actions.name"="dotnet-sonarscanner"
 LABEL "com.github.actions.description"="sonarscanner for dotnet core"
