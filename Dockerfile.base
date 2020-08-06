@@ -11,7 +11,7 @@ RUN echo "deb http://http.us.debian.org/debian/ testing contrib main" >> /etc/ap
     apt-get install -y --no-install-recommends default-jre apt-transport-https aspnetcore-runtime-2.1 mono-complete && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
     apt-get autoremove -y && \
-    dotnet tool install dotnet-sonarscanner --tool-path . --version 4.7.1
+    dotnet tool install dotnet-sonarscanner --tool-path . --version 4.10.0
 
 ADD entrypoint.sh /entrypoint.sh
 
