@@ -1,6 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/sdk
+FROM mcr.microsoft.com/dotnet/sdk:7.0
 
 RUN echo "deb http://http.us.debian.org/debian/ testing contrib main" >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends gnupg && \
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg && \
     mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ && \
     wget -q https://packages.microsoft.com/config/debian/10/prod.list && \
@@ -8,10 +10,10 @@ RUN echo "deb http://http.us.debian.org/debian/ testing contrib main" >> /etc/ap
     chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg && \
     chown root:root /etc/apt/sources.list.d/microsoft-prod.list && \
     apt-get update && \
-    apt-get install -y --no-install-recommends default-jre apt-transport-https aspnetcore-runtime-2.1 mono-complete && \
+    apt-get install -y --no-install-recommends libcrypt-dev default-jre apt-transport-https aspnetcore-runtime-7.0 mono-complete && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
     apt-get autoremove -y && \
-    dotnet tool install dotnet-sonarscanner --tool-path . --version 4.10.0
+    dotnet tool install dotnet-sonarscanner --tool-path . --version 5.8.0
 
 ADD entrypoint.sh /entrypoint.sh
 
